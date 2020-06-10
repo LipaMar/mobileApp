@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="mobileApp.Views.RegistrationPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Zarejestruj" Clicked="Register_Clicked"/>
+    </ContentPage.ToolbarItems>
+  
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <Label Text="Nazwa użytkownika*"/>
+                <Entry x:Name="userName"/>
+                <Label Text="Imię*"/>
+                <Entry x:Name="name"/>
+                <Label Text="Nazwisko*"/>
+                <Entry x:Name="lastName"/>
+                <Label Text="Hasło*"/>
+                <Entry x:Name="pass" IsPassword="True"/>
+                <Label Text="Potwierdź hasło*"/>
+                <Entry x:Name="confPass" IsPassword="True"/>
+                <Label Text="Email*"/>
+                <Entry x:Name="email"/>
+                <Label Text="Numer telefonu*"/>
+                <Entry x:Name="phoneNr"/>
+                <Label Text="Adres portfolio"/>
+                <Entry x:Name="profile"/>
+                <Label Text="Zdjęcie profilowe"/>
+                <Button Text="Wybierz zdjęcie" Clicked="ImageButton_ClickedAsync"/>
+                <Image x:Name="Image" Source="" />
+                <Label Text="* - wymagane pola" FontSize="Small"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
