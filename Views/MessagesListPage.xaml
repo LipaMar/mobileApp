@@ -2,24 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mobileapp="clr-namespace:mobileApp"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="mobileApp.Views.ItemsPage"
-             Title="{Binding Title}"
-             x:Name="BrowseItemsPage">
+             x:Class="mobileApp.Views.MessagesListPage">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <mobileapp:ImageConverter x:Key="converter"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
         <CollectionView x:Name="ItemsCollectionView"
                 ItemsSource="{Binding Students}">
             <d:CollectionView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
-                    <x:String>Sławomirek</x:String>
+                    <x:String>First Item</x:String>
                     <x:String>Second Item</x:String>
                     <x:String>Third Item</x:String>
                     <x:String>Fourth Item</x:String>
@@ -32,15 +25,7 @@
                     <StackLayout Padding="5">
                         <Frame BackgroundColor="Pink">
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Text="{Binding Name}" d:Text="{Binding .}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="17" FontAttributes="Bold" Grid.Row="0"/>
-                                <Label Text="{Binding Surname}" d:Text="Item descripton" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" Grid.Row="1" />
-                                <ContentView Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2">
-                                    <Image  d:Source="no_profile" HeightRequest="50" Source="{Binding Picture,  Converter={StaticResource converter}}" />
-                                </ContentView>
+                                <Label Text="{Binding Name}" d:Text="{Binding}" FontSize="Large" FontAttributes="Bold" Grid.Column="0"/>
                             </Grid>
                         </Frame>
                         <StackLayout.GestureRecognizers>

@@ -26,18 +26,21 @@ namespace mobileApp.Views
 
         public async Task NavigateFromMenu(int id)
         {
-            if (!MenuPages.ContainsKey(id))
-            {
+            MenuPages.Clear();
                 switch (id)
                 {
                     case (int)MenuItemType.List:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
+                        MenuPages.Add(id, new NavigationPage(new ItemsPage()) { BarBackgroundColor = Color.LightPink });
                         break;
                     case (int)MenuItemType.Profile:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                        MenuPages.Add(id, new NavigationPage(new ProfileEditPage()) { BarBackgroundColor = Color.LightPink });
                         break;
+                    case (int)MenuItemType.Logout:
+                    LoggedUser.Logout();
+                    Application.Current.MainPage = new NavigationPage(new LoginPage()) { BarBackgroundColor = Color.LightPink };
+                        return;
                 }
-            }
+            
 
             var newPage = MenuPages[id];
 

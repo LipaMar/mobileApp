@@ -18,13 +18,13 @@ namespace mobileApp.Views
     [DesignTimeVisible(false)]
     public partial class ItemsPage : ContentPage
     {
-        ItemsViewModel viewModel;
+        StudentsViewModel viewModel;
 
         public ItemsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = viewModel = new StudentsViewModel();
         }
 
         async void OnItemSelected(object sender, EventArgs args)
@@ -32,11 +32,6 @@ namespace mobileApp.Views
             var layout = (BindableObject)sender;
             var item = (Student)layout.BindingContext;
             await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
-        }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
         }
 
         protected override void OnAppearing()

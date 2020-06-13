@@ -25,4 +25,16 @@
       <HintPath>..\..\..\..\..\..\..\Microsoft\Xamarin\NuGet\xamarin.forms\4.5.0.495\lib\MonoAndroid90\Xamarin.Forms.Platform.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\MessagesListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ProfileEditPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TalkPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

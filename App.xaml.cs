@@ -14,7 +14,7 @@ namespace mobileApp
         //To debug on Android emulators run the web backend against .NET Core not IIS
         //If using other emulators besides stock Google images you may need to adjust the IP address
         public static string AzureBackendUrl =
-            DeviceInfo.Platform == DevicePlatform.Android ? "https://192.168.1.15:45455" : "https://localhost:44300/";
+            DeviceInfo.Platform == DevicePlatform.Android ? "https://192.168.1.11:45455" : "https://localhost:44300/";
         public static bool UseMockDataStore = false;
 
         public App()
@@ -24,10 +24,10 @@ namespace mobileApp
             if (UseMockDataStore)
                 DependencyService.Register<IDataStore<Student>,MockDataStore>();
             else
-                DependencyService.Register<IDataStore<Student>, AzureDataStore>();
+                DependencyService.Register<IDataStore<Student>, StudentDataStore>();
 
-
-            MainPage = new NavigationPage(new LoginPage());
+            DependencyService.Register<IDataStore<Message>, MessageDataStore>();
+            MainPage = new NavigationPage(new LoginPage()) { BarBackgroundColor = Color.LightPink };
         }
 
         protected override void OnStart()

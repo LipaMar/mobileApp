@@ -35,5 +35,10 @@ namespace mobileApp.Views
             viewModel = new ItemDetailViewModel(item);
             BindingContext = viewModel;
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new TalkPage(new TalkViewModel(viewModel.Student)));
+        }
     }
 }

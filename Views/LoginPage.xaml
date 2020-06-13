@@ -11,10 +11,10 @@
 
         <StackLayout Padding="10">
             <Label Text="Nazwa użytkownika"/>
-            <Entry Text="{Binding UserName}"/>
+            <Entry Text="{Binding Login}"/>
             <Label Text="Hasło"/>
-            <Entry Text="{Binding Password}" IsPassword="True" />
-            <Button Text="Zaloguj" Clicked="Login_Button_Clicked"/>
+            <Entry IsPassword="True" Text="{Binding Password}" />
+            <Button Text="Zaloguj" Command = "{Binding tryToLoginCommand}"/>
             <Label Text="Nie masz konta?"/>
             <Button Text="Zarejestruj się" Clicked="Registration_Button_Clicked"/>
         </StackLayout>

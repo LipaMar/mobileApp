@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="mobileApp.Views.TalkPage"
+             Title="{Binding Title}">
+    <StackLayout>
+    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadMessages}">
+        <CollectionView x:Name="ItemsCollectionView"
+                ItemsSource="{Binding Messages}">
+            <d:CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Sławomirek</x:String>
+                    <x:String>Second Item</x:String>
+                    <x:String>Third Item</x:String>
+                    <x:String>Fourth Item</x:String>
+                    <x:String>Fifth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                </x:Array>
+            </d:CollectionView.ItemsSource>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="5">
+                        <Frame BackgroundColor="Pink">
+                            <Label Text="{Binding Content}" d:Text="{Binding}"/>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+        <Grid Margin="5" HeightRequest="70" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Entry  Placeholder="Wiadomość" BackgroundColor="White" Grid.Column="0" x:Name="Message"/>
+            <Button Grid.Column="1" Text="Wyślij" Clicked="Button_Clicked" />
+        </Grid>
+    </StackLayout>
+</ContentPage>

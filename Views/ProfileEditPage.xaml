@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mobileapp="clr-namespace:mobileApp"
+             mc:Ignorable="d"
+             x:Class="mobileApp.Views.ProfileEditPage">
+
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <mobileapp:ImageConverter x:Key="converter" />
+            </ResourceDictionary>
+        </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Zapisz" Command="{Binding UpdateUser}"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="15" BackgroundColor="LightPink">
+            <ContentView>
+                <Image d:Source="xamarin_logo" x:Name="Image" Source="{Binding Student.Picture,  Converter={StaticResource converter}}" />
+            </ContentView>
+            <Button Text="Zmień zdjęcie profilowe" Clicked="ChangePictureButton_Clicked"/>
+            <Grid BackgroundColor="WhiteSmoke" Padding="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Imię:" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Entry Text="{Binding Student.Name}" d:Text="Item name" FontSize="Large" Grid.Column="1"/>
+
+                <Label Text="Nazwisko:" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="1"/>
+                <Entry Text="{Binding Student.Surname}" d:Text="Item description" FontSize="Large" Grid.Row="1" Grid.Column="1"/>
+
+                <Label Text="Kontakt:" Grid.Row="2" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+
+                <Label Text="Nr telefonu:" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="3"/>
+                <Entry Text="{Binding Student.PhoneNr}" d:Text="Item description" FontSize="Large" Grid.Row="3" Grid.Column="1"/>
+                <Label Text="Email:" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="4"/>
+                <Entry Text="{Binding Student.Email}" d:Text="Item description" FontSize="Large" Grid.Row="4" Grid.Column="1"/>
+                
+                <Label Text="Profil:" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="5"/>
+                <Entry Text="{Binding Student.Profile}" d:Text="Item description" FontSize="Large" Grid.Row="5" Grid.Column="1"/>
+
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

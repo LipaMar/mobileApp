@@ -14,26 +14,16 @@ namespace mobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        LoginViewModel viewModel;
         public LoginPage()
         {
             InitializeComponent();
+            BindingContext = viewModel = new LoginViewModel();
         }
 
         private async void Registration_Button_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new RegistrationPage());
-        }
-
-        private void Login_Button_Clicked(object sender, EventArgs e)
-        {
-            if (isPasswordValid())
-            {
-                Application.Current.MainPage = new MainPage();
-            }
-        }
-        private bool isPasswordValid()
-        {
-            return true;
         }
     }
 }

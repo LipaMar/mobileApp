@@ -20,8 +20,9 @@ namespace mobileApp.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.List, Title="Browse" },
-                new HomeMenuItem {Id = MenuItemType.Profile, Title="About" }
+                new HomeMenuItem {Id = MenuItemType.List, Title="Użytkownicy" },
+                new HomeMenuItem {Id = MenuItemType.Profile, Title="Profil" },
+                new HomeMenuItem {Id = MenuItemType.Logout, Title="Wyloguj" }
             };
 
             ListViewMenu.ItemsSource = menuItems;

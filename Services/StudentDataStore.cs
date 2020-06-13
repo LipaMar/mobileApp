@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
 using mobileApp.Models;
+using Android.App;
 
 namespace mobileApp.Services
 {
-    public class AzureDataStore : IDataStore<Student>
+    public class StudentDataStore : IDataStore<Student>
     {
         HttpClient client;
         IEnumerable<Student> students;
 
-        public AzureDataStore()
+        public StudentDataStore()
         {
 
             client = new HttpClient(GetInsecureHandler());
@@ -38,7 +39,7 @@ namespace mobileApp.Services
         {
             if (forceRefresh && IsConnected)
             {
-                var json = await client.GetStringAsync($"api/item");
+                var json = await client.GetStringAsync($"api/students");
                 students = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Student>>(json));
             }
 
@@ -49,7 +50,7 @@ namespace mobileApp.Services
         {
             if (id != null && IsConnected)
             {
-                var json = await client.GetStringAsync($"api/item/{id}");
+                var json = await client.GetStringAsync($"api/students/{id}");
                 return await Task.Run(() => JsonConvert.DeserializeObject<Student>(json));
             }
 
@@ -63,9 +64,7 @@ namespace mobileApp.Services
 
             var serializedItem = JsonConvert.SerializeObject(item);
             var content = new StringContent(serializedItem, Encoding.UTF8, "application/json");
-            Console.WriteLine(content);
-            var response = await client.PostAsync($"api/item",content );
-            Console.WriteLine("ZAWARTOŚĆ"+response.Content);
+            var response = await client.PostAsync($"api/students",content );
 
             return response.IsSuccessStatusCode;
         }
@@ -76,10 +75,10 @@ namespace mobileApp.Services
                 return false;
 
             var serializedItem = JsonConvert.SerializeObject(item);
-            var buffer = Encoding.UTF8.GetBytes(serializedItem);
-            var byteContent = new ByteArrayContent(buffer);
 
-            var response = await client.PutAsync(new Uri($"api/item/{item.Id}"), byteContent);
+            var content = new StringContent(serializedItem, Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync($"api/students/{item.Id}", content);
 
             return response.IsSuccessStatusCode;
         }
@@ -89,7 +88,7 @@ namespace mobileApp.Services
             if (string.IsNullOrEmpty(id) && !IsConnected)
                 return false;
 
-            var response = await client.DeleteAsync($"api/item/{id}");
+            var response = await client.DeleteAsync($"api/students/{id}");
 
             return response.IsSuccessStatusCode;
         }

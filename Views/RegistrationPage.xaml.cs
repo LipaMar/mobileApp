@@ -1,4 +1,5 @@
-﻿using Android.Graphics;
+﻿using Android.App;
+using Android.Graphics;
 using mobileApp.Models;
 using mobileApp.ViewModels;
 using Plugin.Media;
@@ -32,7 +33,7 @@ namespace mobileApp.Views
             {
                 var _imageConverter = new ImageSourceConverter();
 
-                Student = new Student { Email = email.Text, Id = Guid.NewGuid().ToString(), Name = name.Text, Password = pass.Text, PhoneNr = phoneNr.Text, Picture = ImageToBytes(), Profile = profile.Text, Surname = lastName.Text };
+                Student = new Student { Email = email.Text, Id = Guid.NewGuid().ToString(),UserName=userName.Text, Name = name.Text, Password = pass.Text, PhoneNr = phoneNr.Text, Picture = ImageToBytes(), Profile = profile.Text, Surname = lastName.Text };
                 MessagingCenter.Send(this, "RegisterStudent", Student);
                 await Navigation.PopAsync();
             }
@@ -75,5 +76,6 @@ namespace mobileApp.Views
                 return memoryStream.ToArray();
             }
         }
+
     }
 }

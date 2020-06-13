@@ -2,16 +2,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mobileapp="clr-namespace:mobileApp"
              mc:Ignorable="d"
              x:Class="mobileApp.Views.ItemDetailPage"
              Title="{Binding Title}">
 
-    <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Item.Text}" d:Text="Item name" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small"/>
-    </StackLayout>
-    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <mobileapp:ImageConverter x:Key="converter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView BackgroundColor="Pink">
+        <StackLayout Spacing="20" Margin="15" Padding="10" BackgroundColor="White">
+            <ContentView>
+                <Image  d:Source="xamarin_logo"  Source="{Binding Student.Picture,  Converter={StaticResource converter}}" />
+            </ContentView>
+            <Label Text="{Binding Student.Name}" d:Text="Item name" FontSize="Large"/>
+            <Label Text="{Binding Student.Surname}" d:Text="Item description" FontSize="Large"/>
+            <Label Text="Kontakt:"/>
+            <Label Text="{Binding ContactTel}"/>
+            <Label Text="{Binding ContactMail}"/>
+            <Grid>
+                <Button Grid.Column="0" Text="SMS" Command="{Binding OpenSmsCommand}"/>
+                <Button Grid.Column="1" Text="Mail" Command="{Binding OpenEmailCommand}"/>
+                <Button Grid.Column="2" Text="WEB" Command="{Binding OpenWebsiteCommand}"/>
+                <Button Grid.ColumnSpan="3" Grid.Row="1" Text="Napisz wiadomość" Clicked="Button_Clicked"/>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+
 </ContentPage>

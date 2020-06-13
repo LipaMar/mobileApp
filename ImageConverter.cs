@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -12,6 +13,7 @@ namespace mobileApp
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value != null)
             {
                 byte[] bytes = value as byte[];
 
@@ -20,12 +22,13 @@ namespace mobileApp
                     return BytesToImageSource(bytes);
                 }
 
-                return "no_profile";
             }
+            return "no_profile";
+            
         }
         private ImageSource BytesToImageSource(byte[] bytes)
         {
-            var stream = new MemoryStream(bytes);
+            var stream = new MemoryStream(bytes.ToArray());
             return ImageSource.FromStream(() => stream);
             
         }
